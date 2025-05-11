@@ -9,7 +9,7 @@
   <div class="main">
     <input type="checkbox" id="chk" aria-hidden="true">
     
-    <!-- Sign up form -->
+   
     <div class="signup">
       <form id="signupForm">
         <label for="chk" aria-hidden="true">Sign up</label>
@@ -20,7 +20,7 @@
       </form>
     </div>
 
-    <!-- Login form -->
+   
     <div class="login">
       <form id="loginForm">
         <label for="chk" aria-hidden="true">Login</label>
@@ -32,7 +32,7 @@
   </div>
 
   <script>
-    // Signup POST request
+    
     document.getElementById("signupForm").addEventListener("submit", async (e) => {
       e.preventDefault();
       const email = document.getElementById("signup-email").value;
@@ -58,7 +58,7 @@
       }
     });
 
-    // Login (optional: implement if backend login route is ready)
+   
     document.getElementById("loginForm").addEventListener("submit", (e) => {
       e.preventDefault();
       alert("Login functionality coming soon!");
