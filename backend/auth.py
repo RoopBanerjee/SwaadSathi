@@ -1,20 +1,13 @@
 import firebase_admin
 from firebase_admin import auth, credentials
 
-
 cred = credentials.Certificate("C:\\Users\\Abhijeet\\Desktop\\Project\\swaadsathi-2025-firebase-adminsdk-fbsvc-c20d63f0df.json")
-
-
 firebase_admin.initialize_app(cred)
 
 def create_user(email, password):
     user = auth.create_user(email=email, password=password)
     print(f"User created: {user.uid}")
     return user
-
-def sign_in_user(email, password):
-    print("Sign-in must be handled in the frontend!")
-    return None
 
 def delete_user(uid):
     auth.delete_user(uid)
@@ -27,9 +20,3 @@ def verify_token(id_token):
     except Exception as e:
         print(f"Token verification failed: {e}")
         return None
-
-#test
-if __name__ == "__main__":
-    email = "roopbanerjee@example.com"  
-    password = "passwords@1121"        
-    create_user(email, password)
