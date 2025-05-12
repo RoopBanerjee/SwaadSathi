@@ -8,8 +8,7 @@
 <body>
   <div class="main">
     <input type="checkbox" id="chk" aria-hidden="true">
-    
-   
+      
     <div class="signup">
       <form id="signupForm">
         <label for="chk" aria-hidden="true">Sign up</label>
@@ -46,7 +45,9 @@
           },
           body: JSON.stringify({ email, password })
         });
-          const data = await response.json();
+
+        
+        const data = await response.json();
         if (response.ok) {
           alert("Signup successful!");
         } else {
