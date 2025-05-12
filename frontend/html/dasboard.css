@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
-
+/* dashboard.css */
 * {
   margin: 0;
   padding: 0;
@@ -7,143 +6,162 @@
 }
 
 body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   display: flex;
-  min-height: 100vh;
-  background: linear-gradient(135deg, #fceabb 0%, #f8b500 100%);
-  font-family: 'Poppins', sans-serif;
-  color: #333;
+  background-color: #0b0b0b;
+  color: #fff;
+  overflow-x: hidden;
 }
 
 .sidebar {
-  width: 230px;
-  background: linear-gradient(to bottom right, #1e3c72, #2a5298);
-  color: white;
-  padding: 30px 20px;
+  width: 250px;
+  background-color: #111;
+  padding: 2rem 1.5rem;
+  height: 100vh;
+  position: fixed;
   display: flex;
   flex-direction: column;
-  border-top-right-radius: 20px;
-  border-bottom-right-radius: 20px;
+
+  box-shadow: 4px 0 10px rgba(0, 0, 0, 0.4);
 }
 
-.sidebar h2 {
-  font-size: 26px;
+.sidebar .logo {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #ff6347;
   text-align: center;
-  margin-bottom: 40px;
-  font-weight: 600;
+  margin-bottom: 2rem;
 }
 
-.sidebar ul {
+.sidebar nav ul {
   list-style: none;
+  padding: 0;
 }
 
-.sidebar ul li {
-  margin: 18px 0;
+.sidebar nav ul li {
+  margin: 1.5rem 0;
 }
 
-.sidebar ul li a {
-  color: #ecf0f1;
+.sidebar nav ul li a {
+  color: #fff;
   text-decoration: none;
-  font-size: 16px;
+  font-size: 1.1rem;
   transition: all 0.3s ease;
   display: block;
-  padding: 8px 12px;
-  border-radius: 6px;
 }
 
-.sidebar ul li a:hover {
-  background-color: rgba(255, 255, 255, 0.1);
-  color: #1abc9c;
+.sidebar nav ul li a:hover {
+  color: #ff6347;
+  padding-left: 10px;
 }
 
 .main-content {
-  flex: 1;
-  padding: 20px;
-  box-sizing: border-box;
-  background-color: #fefefe;
-  border-top-left-radius: 20px;
-  border-bottom-left-radius: 20px;
-  box-shadow: inset 5px 0 10px rgba(0, 0, 0, 0.03);
-}
-
-.header {
-  margin-bottom: 20px;
-}
-
-.header h1 {
-  font-size: 36px;
-  color: #2c3e50;
-  font-weight: 600;
-}
-
-.cards {
-  display: flex;
-  gap: 20px;
-  flex-wrap: wrap;
-}
-
-.card {
-  flex: 1 1 calc(33.333% - 20px);
-  background-color: #f4f4f4;
-  padding: 20px;
+  margin-left: 250px;
+  padding: 3rem;
+  width: calc(100% - 250px);
+  background-color: #1a1a1a;
   border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  text-align: center;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  border-left: 5px solid #f8b500;
 }
 
-.card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
 }
 
-.card h3 {
-  margin-bottom: 10px;
-  color: #2980b9;
-  font-size: 18px;
+header .user-info {
+  font-size: 1.2rem;
 }
 
-.card p {
-  font-size: 1.5em;
+header .logout-btn {
+  color: #ff6347;
+  text-decoration: none;
   font-weight: bold;
-  color: #2d3436;
+  padding: 0.5rem 1rem;
+  background-color: #1a1a1a;
+  border: 2px solid #ff6347;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
 }
 
+header .logout-btn:hover {
+  background-color: #ff6347;
+  color: #fff;
+}
 
-@media (max-width: 768px) {
+.section {
+  background-color: #222;
+  border-radius: 10px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  transition: all 0.3s ease;
+}
+
+.section h2 {
+  color: #ff6347;
+  margin-bottom: 1rem;
+}
+
+.section p {
+  color: #ccc;
+  margin-bottom: 1rem;
+}
+
+.action-btn {
+  padding: 1rem 2rem;
+  background-color: #ff6347;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.action-btn:hover {
+  background-color: #e5533d;
+}
+
+.orders-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+.orders-table th, .orders-table td {
+  padding: 1rem;
+  text-align: left;
+}
+
+.orders-table th {
+  background-color: #333;
+}
+
+.orders-table tbody tr:nth-child(even) {
+  background-color: #2a2a2a;
+}
+
+.orders-table tbody tr:hover {
+  background-color: #444;
+}
+
+.orders-table td {
+  color: #fff;
+}
+
+/* Example of responsive layout */
+@media screen and (max-width: 768px) {
   .sidebar {
     width: 200px;
   }
 
-  .cards {
-    flex-direction: column;
-    gap: 15px;
-  }
-
-  .card {
-    flex: 1 1 100%;
-  }
-}
-
-@media (max-width: 480px) {
-  body {
-    flex-direction: column;
-  }
-
-  .sidebar {
-    width: 100%;
-    text-align: center;
-  }
-
   .main-content {
-    padding: 10px;
+    margin-left: 200px;
+    width: calc(100% - 200px);
   }
 
-  .cards {
-    gap: 10px;
-  }
-
-  .card {
-    padding: 15px;
+  header .user-info {
+    font-size: 1rem;
   }
 }
