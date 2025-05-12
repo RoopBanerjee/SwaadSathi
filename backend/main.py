@@ -1,7 +1,16 @@
-from fastapi import FastAPI, HTTPException
-from auth import create_user, delete_user
+from fastapi import FastAPI, HTTPException, Request
+from fastapi.middleware.cors import CORSMiddleware
+from auth import create_user, delete_user, verify_token
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 @app.post("/signup")
 async def signup(email: str, password: str):
@@ -19,6 +28,16 @@ async def delete_user_api(uid: str):
     except Exception as e:
         raise HTTPException(status_code=400, detail=str(e))
 
-if __name__ == "__main__":
-    import uvicorn
-    uvicorn.run(app, host="127.0.0.1", port=8000)
+@app.get("/profile")
+async def protected_route(request: Request):
+    # Expect ID token in Authorization header
+    auth_header = request.headers.get("Authorization")
+    if not auth_header:
+        raise HTTPException(status_code=401, detail="Missing Authorization header")
+
+    id_token = auth_header.split("Bearer ")[-1]  # Format: Bearer <token>
+    user_info = verify_token(id_token)
+    if not user_info:
+        raise HTTPException(status_code=401, detail="Invalid or expired token")
+
+    return {"message": "Token verified!", "user": user_info}
