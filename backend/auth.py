@@ -1,17 +1,30 @@
 import firebase_admin
 from firebase_admin import auth, credentials
 
+
 cred = credentials.Certificate("C:\\Users\\Abhijeet\\Desktop\\Project\\swaadsathi-2025-firebase-adminsdk-fbsvc-c20d63f0df.json")
-firebase_admin.initialize_app(cred)
+
+if not firebase_admin._apps:
+    firebase_admin.initialize_app(cred)
+
 
 def create_user(email, password):
-    user = auth.create_user(email=email, password=password)
-    print(f"User created: {user.uid}")
-    return user
+    try:
+        user = auth.create_user(email=email, password=password)
+        print(f"User created: {user.uid}")
+        return user
+    except Exception as e:
+        print(f"Failed to create user: {e}")
+        return None
+
 
 def delete_user(uid):
-    auth.delete_user(uid)
-    print(f"User {uid} deleted")
+    try:
+        auth.delete_user(uid)
+        print(f"User {uid} deleted")
+    except Exception as e:
+        print(f"Failed to delete user: {e}")
+
 
 def verify_token(id_token):
     try:
