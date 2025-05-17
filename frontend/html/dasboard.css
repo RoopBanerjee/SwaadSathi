@@ -8,11 +8,21 @@
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   display: flex;
-  background-color: #0b0b0b;
-  color: #fff;
   overflow-x: hidden;
+  transition: background-color 0.3s, color 0.3s;
 }
 
+body.dark {
+  background-color: #0b0b0b;
+  color: #fff;
+}
+
+body.light {
+  background-color: #f4f4f4;
+  color: #111;
+}
+
+/* Sidebar */
 .sidebar {
   width: 250px;
   background-color: #111;
@@ -21,7 +31,6 @@ body {
   position: fixed;
   display: flex;
   flex-direction: column;
-
   box-shadow: 4px 0 10px rgba(0, 0, 0, 0.4);
 }
 
@@ -55,12 +64,18 @@ body {
   padding-left: 10px;
 }
 
+/* Main Content */
 .main-content {
   margin-left: 250px;
   padding: 3rem;
   width: calc(100% - 250px);
   background-color: #1a1a1a;
   border-radius: 10px;
+  transition: background-color 0.3s;
+}
+
+body.light .main-content {
+  background-color: #fff;
 }
 
 header {
@@ -74,28 +89,54 @@ header .user-info {
   font-size: 1.2rem;
 }
 
-
-section .Dish-btn {
-  color: #ff6347;
-  text-decoration: none;
-  font-weight: bold;
-  padding: 0.5rem 1rem;
-  background-color: #1a1a1a;
-  border: 2px solid #ff6347;
-  border-radius: 5px;
-  transition: background-color 0.3s ease;
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
-section .Dish-btn:hover {
+
+.theme-toggle input[type="checkbox"] {
+  width: 40px;
+  height: 20px;
+  appearance: none;
+  background-color: #ccc;
+  border-radius: 20px;
+  position: relative;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.theme-toggle input[type="checkbox"]::before {
+  content: '';
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  background-color: #fff;
+  border-radius: 50%;
+  top: 1px;
+  left: 1px;
+  transition: transform 0.3s;
+}
+
+.theme-toggle input[type="checkbox"]:checked {
   background-color: #ff6347;
-  color: #fff;
 }
 
+.theme-toggle input[type="checkbox"]:checked::before {
+  transform: translateX(20px);
+}
+
+/* Section styles */
 .section {
   background-color: #222;
   border-radius: 10px;
   padding: 2rem;
   margin-bottom: 2rem;
-  transition: all 0.3s ease;
+  transition: background-color 0.3s;
+}
+
+body.light .section {
+  background-color: #f0f0f0;
 }
 
 .section h2 {
@@ -108,12 +149,27 @@ section .Dish-btn:hover {
   margin-bottom: 1rem;
 }
 
-
-
-.action-btn:hover {
-  background-color: #e5533d;
+body.light .section p {
+  color: #333;
 }
 
+.Dish-btn {
+  color: #ff6347;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 0.5rem 1rem;
+  background-color: transparent;
+  border: 2px solid #ff6347;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.Dish-btn:hover {
+  background-color: #ff6347;
+  color: #fff;
+}
+
+/* Orders Table */
 .orders-table {
   width: 100%;
   border-collapse: collapse;
@@ -127,6 +183,11 @@ section .Dish-btn:hover {
 
 .orders-table th {
   background-color: #333;
+  color: #fff;
+}
+
+.orders-table td {
+  color: #fff;
 }
 
 .orders-table tbody tr:nth-child(even) {
@@ -137,11 +198,24 @@ section .Dish-btn:hover {
   background-color: #444;
 }
 
-.orders-table td {
-  color: #fff;
+body.light .orders-table th {
+  background-color: #ddd;
+  color: #111;
 }
 
-/* Example of responsive layout */
+body.light .orders-table td {
+  color: #111;
+}
+
+body.light .orders-table tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+body.light .orders-table tbody tr:hover {
+  background-color: #eee;
+}
+
+/* Responsive */
 @media screen and (max-width: 768px) {
   .sidebar {
     width: 200px;
