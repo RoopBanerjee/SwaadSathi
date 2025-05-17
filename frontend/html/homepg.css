@@ -54,7 +54,7 @@ html {
 .dropdown-content {
   display: none;
   position: absolute;
-  top: 171%;
+  top: 120%;
   left: 0;
   background-color: #444;
   min-width: 200px;
@@ -78,6 +78,38 @@ html {
 .dropdown:hover .dropdown-content {
   display: block;
 }
+/* contact */
+.dropright {
+  position: relative;
+}
+
+.dropright-content {
+  display: none;
+  position: absolute;
+  top: 120%;
+  left: -155%;
+  background-color: #444;
+  min-width: 200px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  width: 100%;
+}
+
+.dropright-content a {
+  color: white;
+  padding: 10px 15px;
+  text-decoration: none;
+  display: block;
+  transition: background-color 0.3s;
+}
+
+.dropright-content a:hover {
+  background-color: #575757;
+}
+
+.dropright:hover .dropright-content {
+  display: block;
+}/*droprightend*/
 
 .logo {
   font-size: 1.5rem;
