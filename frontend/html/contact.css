@@ -295,13 +295,24 @@ header .user-info {
 }
 
 .theme-switch .slider:before {
+  content: '🌙';
   position: absolute;
-  content: "";
-  height: 18px; width: 18px;
-  left: 3px; bottom: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  bottom: 3px;
   background-color: white;
-  transition: 0.4s;
   border-radius: 50%;
+  transition: 0.4s, content 0.4s;
+}
+
+input:checked + .slider:before {
+  transform: translateX(26px);
+  content: '☀️';
 }
 
 .theme-switch input:checked + .slider {

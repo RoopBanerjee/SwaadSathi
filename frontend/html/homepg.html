@@ -5,10 +5,76 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Gourmet Bites</title>
   <link rel="stylesheet" href="homepg.css">
+  <style>
+    .theme-switch-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-left: auto;
+    }
+
+    .theme-switch {
+      position: relative;
+      display: inline-block;
+      width: 50px;
+      height: 24px;
+    }
+
+    .theme-switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      background-color: #ccc;
+      border-radius: 34px;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      transition: 0.4s;
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 18px;
+      width: 18px;
+      left: 3px;
+      bottom: 3px;
+      background-color: white;
+      border-radius: 50%;
+      transition: 0.4s;
+    }
+
+    input:checked + .slider {
+      background-color: #66bb6a;
+    }
+
+    input:checked + .slider:before {
+      transform: translateX(26px);
+    }
+
+    .icon-left,
+    .icon-right {
+      font-size: 1.2em;
+      user-select: none;
+    }
+  </style>
 </head>
-<body>
+<body class="dark-theme">
   <header class="navbar">
     <div class="logo">SwaadSathi</div>
+   <div class="theme-switch-wrapper">
+  <label class="theme-switch">
+    <input type="checkbox" id="themeToggle">
+    <span class="slider"></span>
+  </label>
+</div>
+
     <nav>
       <ul>
         <li><a href="/frontend/html/dasboard.html">Dashboard</a></li>
@@ -25,12 +91,12 @@
         <li class="dropdown">
           <a href="/frontend/html/healthtracker.html" class="dropbtn">Health Tracker</a>
           <div class="dropdown-content">
-          <a href="/frontend/html/healthtracker.html">Track Dietary Intake</a>
+            <a href="/frontend/html/healthtracker.html">Track Dietary Intake</a>
             <a href="/frontend/html/healthtracker.html">View Nutritional Info</a>
             <a href="/frontend/html/healthtracker.html">Exercise & Yoga Suggestions</a>
             <a href="/frontend/html/healthtracker.html">Daily Intake Summary</a>
             <a href="/frontend/html/healthtracker.html">Weekly Health Summary</a>
-            </div>
+          </div>
         </li>
         <li class="dropdown">
           <a href="/frontend/html/expensetracker.html" class="dropbtn">Expense Tracker</a>
@@ -40,25 +106,25 @@
             <a href="/frontend/html/expensetracker.html">Exercise & Yoga Suggestions</a>
             <a href="/frontend/html/expensetracker.html">Budget Summary</a>
             <a href="/frontend/html/expensetracker.html">Monthly Expense Chart</a>
-            </div>
-          </li>
+          </div>
+        </li>
         <li class="dropdown">
           <a href="/frontend/html/profile.html" class="dropbtn">Profile</a>
           <div class="dropdown-content">
-          <a href="/frontend/html/profile.html">View Profile</a>
+            <a href="/frontend/html/profile.html">View Profile</a>
             <a href="/frontend/html/profile.html">Edit Profile</a>
             <a href="/frontend/html/profile.html">Exercise & Yoga Suggestions</a>
             <a href="/frontend/html/profile.html">Update Preferences (e.g., dietary type, allergies)</a>
             <a href="/frontend/html/profile.html">Logout</a>
-            </div>
+          </div>
         </li>
         <li class="dropright">
           <a href="/frontend/html/contact.html" class="dropbtn">Contact</a>
           <div class="dropright-content">
-          <a href="/frontend/html/contact.html">Support & Queries</a>
+            <a href="/frontend/html/contact.html">Support & Queries</a>
             <a href="/frontend/html/contact.html">Social Media</a>
             <a href="/frontend/html/contact.html">Submit a Message</a>
-            </div>
+          </div>
         </li>
       </ul>
     </nav>
@@ -101,5 +167,22 @@
       <a href="#">Twitter</a>
     </div>
   </footer>
+
+  <script>
+    const toggle = document.getElementById('themeToggle');
+    const body = document.body;
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    body.classList.remove('dark-theme', 'light-theme');
+    body.classList.add(savedTheme + '-theme');
+    if (savedTheme === 'light') toggle.checked = true;
+
+    toggle.addEventListener('change', () => {
+      const newTheme = toggle.checked ? 'light' : 'dark';
+      body.classList.remove('dark-theme', 'light-theme');
+      body.classList.add(newTheme + '-theme');
+      localStorage.setItem('theme', newTheme);
+    });
+  </script>
+
 </body>
 </html>

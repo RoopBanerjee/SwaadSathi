@@ -5,8 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Expense Tracker - SwaadSathi</title>
   <link rel="stylesheet" href="dasboard.css" />
+  <label class="theme-switch">
+  <input type="checkbox" id="themeToggle">
+  <span class="slider"></span>
+</label>
+
 </head>
-<body>
+<body class="dark-theme">
   <div class="sidebar">
     <div class="logo">SwaadSathi</div>
     <nav>
@@ -25,7 +30,6 @@
   <div class="main-content">
     <header>
       <h1>Expense Tracker</h1>
-      <div class="user-info">Keep track of your culinary spending!</div>
     </header>
 
     <section class="section">
@@ -52,5 +56,20 @@
       <a href="#" class="Dish-btn">View Chart</a>
     </section>
   </div>
+  <script>
+  const toggle = document.getElementById('themeToggle');
+  const body = document.body;
+  const savedTheme = localStorage.getItem('theme') || 'dark';
+  body.classList.remove('dark-theme', 'light-theme');
+  body.classList.add(savedTheme + '-theme');
+  if (savedTheme === 'light') toggle.checked = true;
+  toggle.addEventListener('change', () => {
+    const newTheme = toggle.checked ? 'light' : 'dark';
+    body.classList.remove('dark-theme', 'light-theme');
+    body.classList.add(newTheme + '-theme');
+    localStorage.setItem('theme', newTheme);
+  });
+</script>
+
 </body>
 </html>

@@ -6,6 +6,10 @@
   <title>Contact - SwaadSathi</title>
   <link rel="stylesheet" href="contact.css" />
 </div>
+<label class="theme-switch">
+  <input type="checkbox" id="themeToggle">
+  <span class="slider"></span>
+</label>
 
 </head>
 <body class="dark-theme">
@@ -29,10 +33,6 @@
       <h1>Contact Us</h1>
       <div class="user-info">
         We'd love to hear from you!
-        <label class="theme-switch">
-          <input type="checkbox" id="themeToggle">
-          <span class="slider"></span>
-        </label>
       </div>
     </header>
 
@@ -70,14 +70,22 @@
     </section>
   </div>
 
-  <script>
-    const toggle = document.getElementById('themeToggle');
-    const body = document.body;
-
-    toggle.addEventListener('change', () => {
-      body.classList.toggle('light-theme');
-      body.classList.toggle('dark-theme');
-    });
+  
   </script>
+  <script>
+  const toggle = document.getElementById('themeToggle');
+  const body = document.body;
+  const savedTheme = localStorage.getItem('theme') || 'dark';
+  body.classList.remove('dark-theme', 'light-theme');
+  body.classList.add(savedTheme + '-theme');
+  if (savedTheme === 'light') toggle.checked = true;
+  toggle.addEventListener('change', () => {
+    const newTheme = toggle.checked ? 'light' : 'dark';
+    body.classList.remove('dark-theme', 'light-theme');
+    body.classList.add(newTheme + '-theme');
+    localStorage.setItem('theme', newTheme);
+  });
+</script>
+
 </body>
 </html>
