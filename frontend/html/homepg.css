@@ -361,7 +361,7 @@ input:checked + .slider:before {
 
 
 /* ai Chat Widget */
-  /* #chat-widget {
+  #chat-widget {
     position: fixed;
     bottom: 20px;
     right: 20px;
@@ -422,4 +422,4 @@ input:checked + .slider:before {
     border: none;
     border-radius: 0 0 10px 0;
     cursor: pointer;
-  } */
+  }
