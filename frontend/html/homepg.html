@@ -183,6 +183,111 @@
       localStorage.setItem('theme', newTheme);
     });
   </script>
+<!-- AI Chat Widget -->
+<!-- <style>
+  #chat-widget {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 9999;
+    font-family: Arial;
+  }
+
+  #chat-toggle {
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    font-size: 24px;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  }
+
+  #chat-box {
+    display: none;
+    width: 300px;
+    height: 400px;
+    position: absolute;
+    bottom: 70px;
+    right: 0;
+    background: white;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+  }
+
+  #chat-messages {
+    flex: 1;
+    padding: 10px;
+    overflow-y: auto;
+    font-size: 14px;
+  }
+
+  #chat-input {
+    display: flex;
+    border-top: 1px solid #eee;
+  }
+
+  #chat-input input {
+    flex: 1;
+    padding: 8px;
+    border: none;
+    border-radius: 0 0 0 10px;
+  }
+
+  #chat-input button {
+    padding: 8px 12px;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 0 0 10px 0;
+    cursor: pointer;
+  }
+</style>
+
+<div id="chat-widget">
+  <button id="chat-toggle">💬</button>
+  <div id="chat-box">
+    <div id="chat-messages"></div>
+    <div id="chat-input">
+      <input type="text" id="userInput" placeholder="Ask about recipes...">
+      <button onclick="sendChat()">➤</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  const toggleBtn = document.getElementById("chat-toggle");
+  const chatBox = document.getElementById("chat-box");
+
+  toggleBtn.onclick = () => {
+    chatBox.style.display = chatBox.style.display === "none" ? "flex" : "none";
+  };
+
+  async function sendChat() {
+    const input = document.getElementById("userInput");
+    const msgBox = document.getElementById("chat-messages");
+    const message = input.value;
+    if (!message.trim()) return;
+
+    msgBox.innerHTML += `<div><b>You:</b> ${message}</div>`;
+    input.value = "";
+
+    const response = await fetch("/chat", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ message })
+    });
+
+    const data = await response.json();
+    msgBox.innerHTML += `<div><b>AI:</b> ${data.reply}</div>`;
+    msgBox.scrollTop = msgBox.scrollHeight;
+  }
+</script> -->
 
 </body>
 </html>
