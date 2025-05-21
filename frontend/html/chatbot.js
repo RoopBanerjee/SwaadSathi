@@ -1,4 +1,3 @@
-// /static/chatbot.js
 document.addEventListener("DOMContentLoaded", () => {
   const widget = document.createElement("div");
   widget.innerHTML = `
@@ -15,14 +14,23 @@ document.addEventListener("DOMContentLoaded", () => {
   `;
   document.body.appendChild(widget);
 
-  const toggleBtn = document.getElementById("chat-toggle");
   const chatBox = document.getElementById("chat-box");
+  const toggleBtn = document.getElementById("chat-toggle");
   const input = document.getElementById("userInput");
   const sendBtn = document.getElementById("sendBtn");
   const msgBox = document.getElementById("chat-messages");
 
+  // Load chat state from localStorage
+  if (localStorage.getItem("chatOpen") === "true") {
+    chatBox.style.display = "flex";
+  } else {
+    chatBox.style.display = "none";
+  }
+
   toggleBtn.onclick = () => {
-    chatBox.style.display = chatBox.style.display === "none" ? "flex" : "none";
+    const isOpen = chatBox.style.display === "flex";
+    chatBox.style.display = isOpen ? "none" : "flex";
+    localStorage.setItem("chatOpen", !isOpen);
   };
 
   sendBtn.onclick = async () => {
