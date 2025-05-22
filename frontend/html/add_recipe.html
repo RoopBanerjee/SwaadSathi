@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Add Recipe - SwaadSathi</title>
+  <link rel="stylesheet" href="dasboard.css" />
+</head>
+<body class="dark-theme">
+  <div class="sidebar">
+    <div class="logo">SwaadSathi</div>
+    <nav>
+      <ul>
+        <li><a href="homepg.html">Home</a></li>
+        <li><a href="dasboard.html">Dashboard</a></li>
+        <li><a href="recipes.html">Recipes</a></li>
+      </ul>
+    </nav>
+  </div>
+
+  <div class="main-content">
+    <header>
+      <h1>Add New Recipe</h1>
+    </header>
+
+    <section class="section">
+      <form id="recipeForm" enctype="multipart/form-data">
+        <label>Title: <input type="text" name="title" required></label><br><br>
+        <label>Ingredients: <textarea name="ingredients" rows="4" required></textarea></label><br><br>
+        <label>Steps: <textarea name="steps" rows="5" required></textarea></label><br><br>
+        <label>Category:
+          <select name="category" required>
+            <option>Breakfast</option>
+            <option>Lunch</option>
+            <option>Dinner</option>
+            <option>Dessert</option>
+          </select>
+        </label><br><br>
+        <label>Upload Image: <input type="file" name="image"></label><br><br>
+        <button type="submit">Submit Recipe</button>
+      </form>
+      <p id="statusMsg"></p>
+    </section>
+  </div>
+
+  <script>
+    const form = document.getElementById("recipeForm");
+    const statusMsg = document.getElementById("statusMsg");
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const formData = new FormData(form);
+
+      const response = await fetch("http://localhost:8000/add_recipe", {
+        method: "POST",
+        body: formData,
+      });
+
+      const result = await response.json();
+      statusMsg.textContent = result.message || "Recipe added!";
+      if (response.ok) form.reset();
+    });
+  </script>
+</body>
+</html>
